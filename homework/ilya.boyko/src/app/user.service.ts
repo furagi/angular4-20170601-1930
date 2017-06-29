@@ -28,6 +28,7 @@ export class UserService {
   }
 
   getUser(id: number): Promise<User> {
+    console.log(id)
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
         const user = users.find(function(user) {

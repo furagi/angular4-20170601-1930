@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 
@@ -15,16 +15,16 @@ export class UserFormComponent implements OnInit {
 
   user: User;
 
-  constructor(private _route: ActivatedRoute, private _users: UserService) {}
+  constructor(private _route: ActivatedRoute, private _users: UserService, private _router: Router) {}
 
   ngOnInit() {
-    this._route.params
+    this._route.parent.params
     .switchMap((params: Params) => this._users.getUser(+params['id']))
     .subscribe(user => this.user = user);
   }
 
   save(form: NgForm) {
-    console.log(form);
+    console.log(form)
   }
 
 }
